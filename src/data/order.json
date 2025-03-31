@@ -2,24 +2,27 @@
     {
         "id":"0",
         "name":"Супер сырный",
-        "img":"/src/assets/menuImgs/superCheese.png",
+        "img":"/src/assets/menuImgs/burgers/superCheese.png",
         "weight":"512",
-        "price":"550"
+        "price":"550",
+        "amount": "1"
     },
 
     {
         "id":"1",
         "name":"Картошка фри",
-        "img":"/src/assets/menuImgs/fries.png",
+        "img":"/src/assets/menuImgs/snacks/fries.png",
         "weight":"180",
-        "price":"245"
+        "price":"245",
+        "amount": "1"
     },
 
     {
         "id":"2",
         "name":"Жгучий хот-дог",
-        "img":"/src/assets/menuImgs/hotdog.png",
+        "img":"/src/assets/menuImgs/hotdogs/hotdog.png",
         "weight":"245",
-        "price":"239"
+        "price":"239",
+        "amount": "1"
     }
 ]
