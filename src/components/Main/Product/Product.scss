@@ -30,26 +30,36 @@
         }
     }
 
-    h3{
-        color: rgb(0, 0, 0);
-        font-size: clamp(16px, 2vw, 24px);
-        font-weight: 700;
+    .text-block{
+        height: 103px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         margin-bottom: 8px;
-    }
 
-    .burger-name{
-        color: rgb(0, 0, 0);
-        font-size: clamp(12px, 2vw, 16px);
-        font-weight: 400;
-        line-height: 130%;
-        margin-bottom: 29px;
-    }
+        @media screen and (max-width: 720px) {
+            height: 68px;
+        }
 
-    .burger-weight{
-        color: rgb(177, 177, 177);
-        font-size: clamp(12px, 2vw, 16px);
-        font-weight: 600;
-        line-height: 130%;
+        h3{
+            color: rgb(0, 0, 0);
+            font-size: clamp(16px, 2vw, 24px);
+            font-weight: 700;
+        }
+    
+        .burger-name{
+            color: rgb(0, 0, 0);
+            font-size: clamp(12px, 2vw, 16px);
+            font-weight: 400;
+            line-height: 130%;
+        }
+    
+        .burger-weight{
+            color: rgb(177, 177, 177);
+            font-size: clamp(12px, 2vw, 16px);
+            font-weight: 600;
+            line-height: 130%;
+        }
     }
 
     button{

@@ -4,8 +4,10 @@
         margin: 0 auto;
 
         @media screen and (max-width: 1316px) {
-            width: 98%;
+            width: 96%;
         }
+
+
     }
 
     .nav-container{
@@ -17,12 +19,8 @@
         column-gap: 35px;
         margin-bottom: 100px;
 
-        .selected-items{
-            color: rgb(0, 0, 0);
-            font-size: 40px;
-            font-weight: 700;
-            line-height: 120%;
-            margin-bottom: 36px;
+        @media screen and (max-width: 1044px){
+            flex-direction: column;
         }
     }
 
@@ -33,6 +31,7 @@
     .card-holder{
         display: grid;
         justify-content: space-between;
+        grid-template-rows: auto 1fr;
         grid-template-columns: repeat(3, 1fr);
         row-gap: 42px;
         column-gap: 30px;
@@ -43,6 +42,19 @@
 
         @media screen and (max-width: 1044px) {
             grid-template-columns: repeat(auto-fill, 145px);
+            column-gap: 17px;
+        }
+
+        @media screen and (max-width: 657px) {
+            justify-content: center;
+        }
+
+        .selected-items{
+            color: rgb(0, 0, 0);
+            font-size: clamp(28px, 2vw, 40px);
+            font-weight: 700;
+            line-height: 120%;
+            grid-column: 1 / -1;
         }
     }
 }

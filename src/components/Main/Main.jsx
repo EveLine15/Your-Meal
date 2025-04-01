@@ -21,8 +21,8 @@ export default function Main({stateCart, stateMenu, stateSelected}){
                 <div className="main-container">
                     <Cart stateCart={stateCart}/>
                     <div className="card-block">
-                        <h1 className="selected-items">{selected}</h1>
                         <div className="card-holder">
+                            <h1 className="selected-items">{selected}</h1>
                             {items.map((item) => <Product key={item.id} {...item}/>)}
                         </div>
 
