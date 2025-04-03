@@ -2,7 +2,7 @@ import "./Product.scss"
 
 export default function Products({id, name, img, weight, price}){
     return(
-        <div key={id} className="card">
+        <div className="card">
             <div className="img-wr">
                 <img src={img} alt={name}/>
             </div>
