@@ -1,7 +1,8 @@
 export const changeAmount = (id, change, cart, setCart) => {
 
+    console.log(id)
+
     const currentAmount = cart.find(item => item.id === id).amount;
-    console.log(currentAmount)
     if(currentAmount <= 1 && change === -1) {
         setCart(cart.filter(item => item.id !== id));
         return;

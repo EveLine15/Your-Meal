@@ -5,6 +5,7 @@
     @media screen and (max-width: 1204px) {
         width: 100%;
         overflow-x: auto;
+        padding-bottom: 5px;
     }
 
     .container{
@@ -43,8 +44,19 @@
     .isActive{
         background-color: rgb(255, 171, 8);
     }
-}
 
-.nav-wr::-webkit-scrollbar{
-    display: none;
+    
+    &::-webkit-scrollbar {
+        height: 7px;
+      }
+    
+    &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 50%;
+    }
+
+    &::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 114, 32, 0.322); 
+    border-radius: 18px;
+    }
 }

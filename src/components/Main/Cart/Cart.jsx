@@ -30,7 +30,7 @@ export default function Cart({stateCart}){
                     <p>{price}₽</p>
                 </div>
 
-                <button className={`make-order ${cart.length === 0 ? "none" : ""}`}>Оформить заказ</button>
+                <button className={`make-order-btn ${cart.length === 0 ? "none" : ""}`}>Оформить заказ</button>
 
                 <div className={`freeDelivery ${amountOfMeals >= 7 || price >= 2500 ? "" : 'none'}`}>
                     <img src={iconBike} alt="bike"/>
