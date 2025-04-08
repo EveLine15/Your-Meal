@@ -58,7 +58,7 @@ export default function Modal({id, name, img, weight, price, description, compos
                 <button className={`add-btn-modal ${currentAmount === 0 ? "add-btn-disabled" : ""}`} disabled={currentAmount === 0} onClick={closeModal}>Добавить</button>
 
                 <div className="add">
-                        <AddButton id={id} amount={currentAmount} cart={cart} setCart={setCart} productData={{ id, name, img, weight, price, description, compos, calories }}/>
+                        <AddButton id={id} amount={currentAmount} cart={cart} setCart={setCart} productData={{ id, name, img, weight, price }}/>
                     <p className="modal-price">{price}₽</p>
                 </div>
 
