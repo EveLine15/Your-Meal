@@ -151,17 +151,26 @@
         font-weight: 400;
 
         transition: .2s;
+
+        &:hover{
+            background-color: rgb(255, 171, 8);
+        }
     }
 
-    .add-btn-modal:hover{
-        background-color: rgb(255, 171, 8);
+    .add-btn-disabled{
+        background-color: rgb(242, 242, 243);
+        color: rgba(0, 0, 0, 0.562);
+
+        &:hover{
+            background-color: rgb(242, 242, 243);
+        }
     }
 
     .add{
         display: flex;
         width: 100%;
         justify-content: space-between;
-        align-items: center;
+        align-items: end;
 
         @media screen and (max-width: 646px){            
             flex-direction: column;

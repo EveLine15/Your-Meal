@@ -6,7 +6,7 @@ export default function Products(props) {
 
     const [isOpen, setIsOpen] = useState(false);
 
-    const {cart, setCart} = props.stateCart;
+    const { cart, setCart } = props.stateCart;
 
     return (
         <div className="card">

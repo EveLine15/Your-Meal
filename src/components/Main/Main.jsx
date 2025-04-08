@@ -11,7 +11,7 @@ import { useState } from 'react'
 
 export default function Main(){
 
-    const [cart, setCart] = useState(order);
+    const [cart, setCart] = useState([]);
     const [menu, setMenu] = useState(menuBase);
     const [selected, setSelected] = useState(menuBase[0].name);
 

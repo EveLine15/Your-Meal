@@ -1,25 +1,26 @@
-export const changeAmount = (id, change, cart, setCart) => {
+export const changeAmount = (id, change, cart, setCart, productData) => {
+    const existingItem = cart.find(item => item.id === id);
 
-    console.log(id)
-
-    const currentAmount = cart.find(item => item.id === id).amount;
-    if(currentAmount <= 1 && change === -1) {
-        setCart(cart.filter(item => item.id !== id));
-        return;
+    if (!existingItem && change > 0) {
+      setCart([...cart, { ...productData, amount: 1 }]);
+      return;
     }
-
-    const arr = cart.map(item => {
-        if(item.id === id){
-            const newAmount = +item.amount + change;
-            return{
-                ...item,
-                amount: newAmount
-            }
-        }
-
-        return item;
-    })
-
-    setCart(arr);
-
-}
+  
+    if (existingItem && existingItem.amount <= 1 && change === -1) {
+      setCart(cart.filter(item => item.id !== id));
+      return;
+    }
+  
+    const newCart = cart.map(item => {
+      if (item.id === id) {
+        return {
+          ...item,
+          amount: +item.amount + change,
+        };
+      }
+      return item;
+    });
+  
+    setCart(newCart);
+  };
+  
