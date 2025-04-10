@@ -2,7 +2,7 @@
     {
         "id":"01",
         "name":"Супер сырный",
-        "img":"/src/assets/menuImgs/burgers/superCheese.png",
+        "img":"/src/assets/menuImgs/burgers/superCheese.jpg",
         "weight":"512",
         "price":"550",
         "amount": "1",
@@ -12,21 +12,21 @@
     },
 
     {
-        "id":"05",
-        "name":"Итальянский",
-        "img":"/src/assets/menuImgs/burgers/italian.png",
-        "weight":"590",
-        "price":"510",
+        "id":"06",
+        "name":"Вегетарианский",
+        "img":"/src/assets/menuImgs/burgers/vegan.jpg",
+        "weight":"380",
+        "price":"450",
         "amount": "1",
-        "description": "Вкус солнечной Италии! Нежная куриная котлета с песто, вялеными томатами и моцареллой на булочке с травами.",
-        "compos": ["Куриная котлета", "Моцарелла", "Вяленые томаты", "Соус песто", "Руккола", "Булочка"],
-        "calories": "740"
+        "description": "Наслаждение без мяса! Питательная котлета из нута и овощей с авокадо, свежими овощами и веганским майонезом.",
+        "compos": ["Котлета из нута", "Авокадо", "Салат", "Помидор", "Веганский майонез", "Булочка"],
+        "calories": "520"
     },
 
     {
         "id":"82",
         "name":"Жгучий хот-дог",
-        "img":"/src/assets/menuImgs/hotdogs/hotHotdog.png",
+        "img":"/src/assets/menuImgs/hotdogs/hotHotdog.jpg",
         "weight":"245",
         "price":"239",
         "amount": "1",

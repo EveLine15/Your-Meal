@@ -1,6 +1,6 @@
 import "./Order.scss"
 
-import AddButton from "../../AddButton/AddButton";
+import { changeAmount } from "./helper/helper"
 
 export default function Order({id, name, img, weight, price, description, compos, calories, amount, cart, setCart}){
     
@@ -19,7 +19,11 @@ export default function Order({id, name, img, weight, price, description, compos
                     </div>
                 </div>
 
-                <AddButton id={id} amount={amount} cart={cart} setCart={setCart} productData={{ id, name, img, weight, price, description, compos, calories }}/>
+                <div className="amount-control">
+                    <button onClick={() => changeAmount(id, -1, cart, setCart)}>-</button>
+                    <p>{amount}</p>
+                    <button onClick={() => changeAmount(id, 1, cart, setCart)}>+</button>
+                </div>
 
             </div>
 

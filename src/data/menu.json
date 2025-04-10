@@ -7,7 +7,7 @@
             {
                 "id":"00",
                 "name":"Мясная бомба",
-                "img":"/src/assets/menuImgs/burgers/meetBomb.png",
+                "img":"/src/assets/menuImgs/burgers/meetBomb.jpg",
                 "weight":"520",
                 "price":"689",
                 "amount": "1",
@@ -18,7 +18,7 @@
             {
                 "id":"01",
                 "name":"Супер сырный",
-                "img":"/src/assets/menuImgs/burgers/superCheese.png",
+                "img":"/src/assets/menuImgs/burgers/superCheese.jpg",
                 "weight":"512",
                 "price":"550",
                 "amount": "1",
@@ -29,7 +29,7 @@
             {
                 "id":"02",
                 "name":"Сытный",
-                "img":"/src/assets/menuImgs/burgers/hearty.png",
+                "img":"/src/assets/menuImgs/burgers/hearty.jpg",
                 "weight":"580",
                 "price":"638",
                 "amount": "1",
@@ -40,7 +40,7 @@
             {
                 "id":"03",
                 "name":"Тяжёлый удар",
-                "img":"/src/assets/menuImgs/burgers/heavybeat.png",
+                "img":"/src/assets/menuImgs/burgers/heavybeat.jpg",
                 "weight":"470",
                 "price":"480",
                 "amount": "1",
@@ -51,7 +51,7 @@
             {
                 "id":"04",
                 "name":"Вечная классика",
-                "img":"/src/assets/menuImgs/burgers/classic.png",
+                "img":"/src/assets/menuImgs/burgers/classic.jpg",
                 "weight":"450",
                 "price":"450",
                 "amount": "1",
@@ -62,7 +62,7 @@
             {
                 "id":"05",
                 "name":"Итальянский",
-                "img":"/src/assets/menuImgs/burgers/italian.png",
+                "img":"/src/assets/menuImgs/burgers/italian.jpg",
                 "weight":"590",
                 "price":"510",
                 "amount": "1",
@@ -73,7 +73,7 @@
             {
                 "id":"06",
                 "name":"Вегетарианский",
-                "img":"/src/assets/menuImgs/burgers/vegan.png",
+                "img":"/src/assets/menuImgs/burgers/vegan.jpg",
                 "weight":"380",
                 "price":"450",
                 "amount": "1",
@@ -91,7 +91,7 @@
             {
                 "id":"10",
                 "name":"Картофель фри",
-                "img":"/src/assets/menuImgs/snacks/fries.png",
+                "img":"/src/assets/menuImgs/snacks/fries.jpg",
                 "weight":"180",
                 "price":"245",
                 "amount": "1",
@@ -102,7 +102,7 @@
             {
                 "id":"11",
                 "name":"Начос",
-                "img":"/src/assets/menuImgs/snacks/nachos.png",
+                "img":"/src/assets/menuImgs/snacks/nachos.jpg",
                 "weight":"200",
                 "price":"250",
                 "amount": "1",
@@ -113,7 +113,7 @@
             {
                 "id":"12",
                 "name":"Луковые кольца",
-                "img":"/src/assets/menuImgs/snacks/onionRings.png",
+                "img":"/src/assets/menuImgs/snacks/onionRings.jpg",
                 "weight":"160",
                 "price":"230",
                 "amount": "1",
@@ -124,7 +124,7 @@
             {
                 "id":"13",
                 "name":"Картофель по-деревенски",
-                "img":"/src/assets/menuImgs/snacks/rustic.png",
+                "img":"/src/assets/menuImgs/snacks/rustic.jpg",
                 "weight":"240",
                 "price":"280",
                 "amount": "1",
@@ -135,7 +135,7 @@
             {
                 "id":"14",
                 "name":"Чесночные гренки",
-                "img":"/src/assets/menuImgs/snacks/garlicCrouton.png",
+                "img":"/src/assets/menuImgs/snacks/garlicCrouton.jpg",
                 "weight":"120",
                 "price":"180",
                 "amount": "1",
@@ -146,7 +146,7 @@
             {
                 "id":"15",
                 "name":"Куриные наггетсы",
-                "img":"/src/assets/menuImgs/snacks/chicken.png",
+                "img":"/src/assets/menuImgs/snacks/chicken.jpg",
                 "weight":"200",
                 "price":"290",
                 "amount": "1",
@@ -157,7 +157,7 @@
             {
                 "id":"16",
                 "name":"Сырные палочки",
-                "img":"/src/assets/menuImgs/snacks/cheeseSticks.png",
+                "img":"/src/assets/menuImgs/snacks/cheeseSticks.jpg",
                 "weight":"160",
                 "price":"260",
                 "amount": "1",
@@ -168,7 +168,7 @@
             {
                 "id":"17",
                 "name":"Кукурузные чипсы",
-                "img":"/src/assets/menuImgs/snacks/cornChips.png",
+                "img":"/src/assets/menuImgs/snacks/cornChips.jpg",
                 "weight":"100",
                 "price":"150",
                 "amount": "1",
@@ -186,7 +186,7 @@
             {
                 "id":"20",
                 "name":"Сытное комбо",
-                "img":"/src/assets/menuImgs/combo/heartyCombo.png",
+                "img":"/src/assets/menuImgs/combo/heartyCombo.jpg",
                 "weight":"700",
                 "price":"850",
                 "amount": "1",
@@ -197,7 +197,7 @@
             {
                 "id":"21",
                 "name":"Классическое комбо",
-                "img":"/src/assets/menuImgs/combo/classicCombo.png",
+                "img":"/src/assets/menuImgs/combo/classicCombo.jpg",
                 "weight":"650",
                 "price":"750",
                 "amount": "1",
@@ -208,7 +208,7 @@
             {
                 "id":"22",
                 "name":"Двойное комбо",
-                "img":"/src/assets/menuImgs/combo/duoCombo.png",
+                "img":"/src/assets/menuImgs/combo/duoCombo.jpg",
                 "weight":"920",
                 "price":"1020",
                 "amount": "1",
@@ -219,7 +219,7 @@
             {
                 "id":"23",
                 "name":"Триплдог комбо",
-                "img":"/src/assets/menuImgs/combo/tripledog.png",
+                "img":"/src/assets/menuImgs/combo/tripledog.jpg",
                 "weight":"790",
                 "price":"800",
                 "amount": "1",
@@ -237,7 +237,7 @@
             {
                 "id":"30",
                 "name":"Классическая шаурма",
-                "img":"/src/assets/menuImgs/shaurma/classic.png",
+                "img":"/src/assets/menuImgs/shaurma/classic.jpg",
                 "weight":"350",
                 "price":"320",
                 "amount": "1",
@@ -248,7 +248,7 @@
             {
                 "id":"31",
                 "name":"Острая шаурма",
-                "img":"/src/assets/menuImgs/shaurma/hot.png",
+                "img":"/src/assets/menuImgs/shaurma/hot.jpg",
                 "weight":"370",
                 "price":"350",
                 "amount": "1",
@@ -259,7 +259,7 @@
             {
                 "id":"32",
                 "name":"Шаурма с курицей",
-                "img":"/src/assets/menuImgs/shaurma/chicken.png",
+                "img":"/src/assets/menuImgs/shaurma/chicken.jpg",
                 "weight":"360",
                 "price":"340",
                 "amount": "1",
@@ -270,7 +270,7 @@
             {
                 "id":"33",
                 "name":"Вегетарианская шаурма",
-                "img":"/src/assets/menuImgs/shaurma/vegan.png",
+                "img":"/src/assets/menuImgs/shaurma/vegan.jpg",
                 "weight":"330",
                 "price":"300",
                 "amount": "1",
@@ -281,7 +281,7 @@
             {
                 "id":"34",
                 "name":"Шаурма с говядиной",
-                "img":"/src/assets/menuImgs/shaurma/beef.png",
+                "img":"/src/assets/menuImgs/shaurma/beef.jpg",
                 "weight":"380",
                 "price":"380",
                 "amount": "1",
@@ -292,7 +292,7 @@
             {
                 "id":"35",
                 "name":"Сырная шаурма",
-                "img":"/src/assets/menuImgs/shaurma/cheese.png",
+                "img":"/src/assets/menuImgs/shaurma/cheese.jpg",
                 "weight":"365",
                 "price":"370",
                 "amount": "1",
@@ -303,7 +303,7 @@
             {
                 "id":"36",
                 "name":"Грибная шаурма",
-                "img":"/src/assets/menuImgs/shaurma/mushroom.png",
+                "img":"/src/assets/menuImgs/shaurma/mushroom.jpg",
                 "weight":"340",
                 "price":"330",
                 "amount": "1",
@@ -314,7 +314,7 @@
             {
                 "id":"37",
                 "name":"Двойная мясная шаурма",
-                "img":"/src/assets/menuImgs/shaurma/double.png",
+                "img":"/src/assets/menuImgs/shaurma/double.jpg",
                 "weight":"450",
                 "price":"450",
                 "amount": "1",
@@ -332,7 +332,7 @@
             {
                 "id":"40",
                 "name":"Пепперони",
-                "img":"/src/assets/menuImgs/pizza/pepperoni.png",
+                "img":"/src/assets/menuImgs/pizza/pepperoni.jpg",
                 "weight":"550",
                 "price":"650",
                 "amount": "1",
@@ -343,7 +343,7 @@
             {
                 "id":"41",
                 "name":"Маргарита",
-                "img":"/src/assets/menuImgs/pizza/margarita.png",
+                "img":"/src/assets/menuImgs/pizza/margarita.jpg",
                 "weight":"500",
                 "price":"550",
                 "amount": "1",
@@ -354,7 +354,7 @@
             {
                 "id":"42",
                 "name":"Гавайская",
-                "img":"/src/assets/menuImgs/pizza/hawaii.png",
+                "img":"/src/assets/menuImgs/pizza/hawaii.jpg",
                 "weight":"530",
                 "price":"600",
                 "amount": "1",
@@ -365,7 +365,7 @@
             {
                 "id":"43",
                 "name":"Четыре сыра",
-                "img":"/src/assets/menuImgs/pizza/fourcheese.png",
+                "img":"/src/assets/menuImgs/pizza/fourcheese.jpg",
                 "weight":"520",
                 "price":"620",
                 "amount": "1",
@@ -376,7 +376,7 @@
             {
                 "id":"44",
                 "name":"Карбонара",
-                "img":"/src/assets/menuImgs/pizza/carbonara.png",
+                "img":"/src/assets/menuImgs/pizza/carbonara.jpg",
                 "weight":"540",
                 "price":"670",
                 "amount": "1",
@@ -387,7 +387,7 @@
             {
                 "id":"45",
                 "name":"Мясная",
-                "img":"/src/assets/menuImgs/pizza/meat.png",
+                "img":"/src/assets/menuImgs/pizza/meat.jpg",
                 "weight":"580",
                 "price":"700",
                 "amount": "1",
@@ -398,7 +398,7 @@
             {
                 "id":"46",
                 "name":"Вегетарианская",
-                "img":"/src/assets/menuImgs/pizza/vegan.png",
+                "img":"/src/assets/menuImgs/pizza/vegan.jpg",
                 "weight":"510",
                 "price":"580",
                 "amount": "1",
@@ -416,7 +416,7 @@
             {
                 "id":"50",
                 "name":"Лапша с курицей",
-                "img":"/src/assets/menuImgs/wok/chicken.png",
+                "img":"/src/assets/menuImgs/wok/chicken.jpg",
                 "weight":"400",
                 "price":"450",
                 "amount": "1",
@@ -427,7 +427,7 @@
             {
                 "id":"51",
                 "name":"Лапша с говядиной",
-                "img":"/src/assets/menuImgs/wok/beef.png",
+                "img":"/src/assets/menuImgs/wok/beef.jpg",
                 "weight":"420",
                 "price":"480",
                 "amount": "1",
@@ -438,7 +438,7 @@
             {
                 "id":"52",
                 "name":"Овощной вок",
-                "img":"/src/assets/menuImgs/wok/vegetable.png",
+                "img":"/src/assets/menuImgs/wok/vegetable.jpg",
                 "weight":"380",
                 "price":"400",
                 "amount": "1",
@@ -449,7 +449,7 @@
             {
                 "id":"53",
                 "name":"Лапша с морепродуктами",
-                "img":"/src/assets/menuImgs/wok/seafood.png",
+                "img":"/src/assets/menuImgs/wok/seafood.jpg",
                 "weight":"410",
                 "price":"520",
                 "amount": "1",
@@ -460,7 +460,7 @@
             {
                 "id":"54",
                 "name":"Лапша с уткой",
-                "img":"/src/assets/menuImgs/wok/duck.png",
+                "img":"/src/assets/menuImgs/wok/duck.jpg",
                 "weight":"430",
                 "price":"550",
                 "amount": "1",
@@ -471,7 +471,7 @@
             {
                 "id":"55",
                 "name":"Грибной вок",
-                "img":"/src/assets/menuImgs/wok/mushroom.png",
+                "img":"/src/assets/menuImgs/wok/mushroom.jpg",
                 "weight":"390",
                 "price":"420",
                 "amount": "1",
@@ -489,7 +489,7 @@
             {
                 "id":"60",
                 "name":"Чизкейк",
-                "img":"/src/assets/menuImgs/desserts/cheesecake.png",
+                "img":"/src/assets/menuImgs/desserts/cheesecake.jpg",
                 "weight":"150",
                 "price":"350",
                 "amount": "1",
@@ -500,7 +500,7 @@
             {
                 "id":"61",
                 "name":"Шоколадный торт",
-                "img":"/src/assets/menuImgs/desserts/chocolateCake.png",
+                "img":"/src/assets/menuImgs/desserts/chocolateCake.jpg",
                 "weight":"180",
                 "price":"320",
                 "amount": "1",
@@ -511,7 +511,7 @@
             {
                 "id":"62",
                 "name":"Мороженое",
-                "img":"/src/assets/menuImgs/desserts/icecream.png",
+                "img":"/src/assets/menuImgs/desserts/icecream.jpg",
                 "weight":"120",
                 "price":"250",
                 "amount": "1",
@@ -522,7 +522,7 @@
             {
                 "id":"63",
                 "name":"Тирамису",
-                "img":"/src/assets/menuImgs/desserts/tiramisu.png",
+                "img":"/src/assets/menuImgs/desserts/tiramisu.jpg",
                 "weight":"160",
                 "price":"380",
                 "amount": "1",
@@ -533,7 +533,7 @@
             {
                 "id":"64",
                 "name":"Панна котта",
-                "img":"/src/assets/menuImgs/desserts/pannaCotta.png",
+                "img":"/src/assets/menuImgs/desserts/pannaCotta.jpg",
                 "weight":"140",
                 "price":"300",
                 "amount": "1",
@@ -544,7 +544,7 @@
             {
                 "id":"65",
                 "name":"Круассан",
-                "img":"/src/assets/menuImgs/desserts/croissant.png",
+                "img":"/src/assets/menuImgs/desserts/croissant.jpg",
                 "weight":"100",
                 "price":"200",
                 "amount": "1",
@@ -555,7 +555,7 @@
             {
                 "id":"66",
                 "name":"Фруктовый салат",
-                "img":"/src/assets/menuImgs/desserts/fruitSalad.png",
+                "img":"/src/assets/menuImgs/desserts/fruitSalad.jpg",
                 "weight":"200",
                 "price":"280",
                 "amount": "1",
@@ -566,7 +566,7 @@
             {
                 "id":"67",
                 "name":"Брауни",
-                "img":"/src/assets/menuImgs/desserts/brownie.png",
+                "img":"/src/assets/menuImgs/desserts/brownie.jpg",
                 "weight":"130",
                 "price":"270",
                 "amount": "1",
@@ -577,7 +577,7 @@
             {
                 "id":"68",
                 "name":"Черничный чизкейк",
-                "img":"/src/assets/menuImgs/desserts/blueberryCheesecake.png",
+                "img":"/src/assets/menuImgs/desserts/blueberryCheesecake.jpg",
                 "weight":"170",
                 "price":"400",
                 "amount": "1",
@@ -595,7 +595,7 @@
             {
                 "id":"70",
                 "name":"Кетчуп",
-                "img":"/src/assets/menuImgs/sauces/ketchup.png",
+                "img":"/src/assets/menuImgs/sauces/ketchup.jpg",
                 "weight":"50",
                 "price":"50",
                 "amount": "1",
@@ -606,7 +606,7 @@
             {
                 "id":"71",
                 "name":"Майонез",
-                "img":"/src/assets/menuImgs/sauces/mayonnaise.png",
+                "img":"/src/assets/menuImgs/sauces/mayonnaise.jpg",
                 "weight":"50",
                 "price":"50",
                 "amount": "1",
@@ -617,7 +617,7 @@
             {
                 "id":"72",
                 "name":"Чесночный",
-                "img":"/src/assets/menuImgs/sauces/garlic.png",
+                "img":"/src/assets/menuImgs/sauces/garlic.jpg",
                 "weight":"50",
                 "price":"60",
                 "amount": "1",
@@ -628,7 +628,7 @@
             {
                 "id":"73",
                 "name":"Барбекю",
-                "img":"/src/assets/menuImgs/sauces/barbecue.png",
+                "img":"/src/assets/menuImgs/sauces/barbecue.jpg",
                 "weight":"50",
                 "price":"70",
                 "amount": "1",
@@ -639,7 +639,7 @@
             {
                 "id":"74",
                 "name":"Сырный",
-                "img":"/src/assets/menuImgs/sauces/cheese.png",
+                "img":"/src/assets/menuImgs/sauces/cheese.jpg",
                 "weight":"50",
                 "price":"70",
                 "amount": "1",
@@ -658,7 +658,7 @@
             {
                 "id":"80",
                 "name":"Классический хот-дог",
-                "img":"/src/assets/menuImgs/hotdogs/classic.png",
+                "img":"/src/assets/menuImgs/hotdogs/classic.jpg",
                 "weight":"250",
                 "price":"280",
                 "amount": "1",
@@ -669,7 +669,7 @@
             {
                 "id":"81",
                 "name":"Чикен хот-дог",
-                "img":"/src/assets/menuImgs/hotdogs/chicken.png",
+                "img":"/src/assets/menuImgs/hotdogs/chicken.jpg",
                 "weight":"270",
                 "price":"320",
                 "amount": "1",
@@ -680,7 +680,7 @@
             {
                 "id":"82",
                 "name":"Жгучий хот-дог",
-                "img":"/src/assets/menuImgs/hotdogs/hotHotdog.png",
+                "img":"/src/assets/menuImgs/hotdogs/hotHotdog.jpg",
                 "weight":"245",
                 "price":"239",
                 "amount": "1",
@@ -691,7 +691,7 @@
             {
                 "id":"83",
                 "name":"Двойной хот-дог",
-                "img":"/src/assets/menuImgs/hotdogs/double.png",
+                "img":"/src/assets/menuImgs/hotdogs/double.jpg",
                 "weight":"350",
                 "price":"380",
                 "amount": "1",
@@ -702,7 +702,7 @@
             {
                 "id":"84",
                 "name":"Гриль хот-дог",
-                "img":"/src/assets/menuImgs/hotdogs/grill.png",
+                "img":"/src/assets/menuImgs/hotdogs/grill.jpg",
                 "weight":"290",
                 "price":"350",
                 "amount": "1",
