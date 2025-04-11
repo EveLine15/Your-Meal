@@ -36,7 +36,7 @@ export default function Main(){
                 </div>
 
                 <div className="main-container">
-                    <Cart stateCart={stateCart}/>
+                    <Cart stateCart={stateCart} setCategoryId={setCategoryId} stateIsOpen={stateIsOpen}/>
                     <div className="card-block">
                         <div className="card-holder">
                             <h1 className="selected-items">{selected}</h1>
