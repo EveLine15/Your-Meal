@@ -7,7 +7,7 @@
     margin-bottom: 33px;
 
     @media screen and (max-width:646px) {
-        height: 611px;
+        height: 511px;
         clip-path: ellipse(100% 100% at center top);
     }
 
@@ -64,6 +64,7 @@
 
             @media screen and (max-width:646px) {
                 text-align: center;
+                padding: 30px 0 19px 0;
             }
 
             .top{
@@ -104,6 +105,10 @@
                     
                     @media screen and (max-width: 786px) {
                         width: 50%;
+                    }
+
+                    @media screen and (max-width:646px) {
+                        display: none;
                     }
                 }
             }
