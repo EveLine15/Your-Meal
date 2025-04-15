@@ -39,6 +39,11 @@
             column-gap: 30px;
         }
 
+        @media screen and (max-width: 360px) {
+            flex-direction: column;
+            row-gap: 24px;
+        }
+
     }
 
     .phone{

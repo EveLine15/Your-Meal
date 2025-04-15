@@ -1,10 +1,11 @@
 .wr-cart{
     margin-top: 75px;
-    margin-bottom: 20px;
     position: relative;
 
     @media screen and (max-width: 1044px){
         margin-top: 0;
+        margin-bottom: 20px;
+        z-index: 10;
     }
 
     %flex{
@@ -17,20 +18,16 @@
         width: 300px;
         padding: 24px 16px;
         border-radius: 18px;
+        max-height: 389px;
         background: rgb(255, 255, 255);
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 10;
-
-        &.expanded{
-            max-height: 389px;
-            overflow: visible;
-        }
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.16);
+        overflow-y: auto;
 
         @media screen and (max-width: 1044px){
             margin: 0 0 30px 0;
-            overflow-y: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
         @media screen and (max-width: 657px) {

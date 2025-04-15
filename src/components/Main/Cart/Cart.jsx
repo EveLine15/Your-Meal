@@ -1,6 +1,6 @@
 import "./Cart.scss"
 import Order from "./Order/Order"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import iconBike from "../../../assets/icons/motobike.png"
 
@@ -8,17 +8,27 @@ export default function Cart({stateCart, setCategoryId, stateIsOpen}){
 
     const {cart, setCart} = stateCart;
     const {isOpen, setIsOpen} = stateIsOpen;
+    const [selfWindow, setSelfWindow] = useState(window.innerWidth);
+    console.log(selfWindow)
 
-    const [cartOpen, setCartOpen] = useState(false);
+    const [cartOpen, setCartOpen] = useState(selfWindow >= 1044);
+
+    useEffect(() => {
+        const handleResize = () => setSelfWindow(window.innerWidth);
+        window.addEventListener("resize", handleResize);
+    
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+    
 
     const amountOfMeals = cart.reduce((acc, item) => acc + +item.amount, 0)
     const price = cart.reduce((acc, item) => acc + item.price * item.amount, 0);
 
     return(
         <div className="wr-cart">
-            <div className={`container ${cartOpen ? "expanded" : ""}`} onClick={() => setCartOpen(!cartOpen)}>
+            <div className={`container ${cartOpen ? "expanded" : ""}`}>
 
-                <div className="label">
+                <div className="label" onClick={() => {if(selfWindow <= 1044) setCartOpen(!cartOpen)}}>
                     <p>Корзина</p>
                     <div className="numberOrders"><p>{amountOfMeals}</p></div>
                 </div>
