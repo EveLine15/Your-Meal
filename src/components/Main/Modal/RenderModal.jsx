@@ -7,7 +7,7 @@ export default function RenderModal({categoryId, item, stateCart, closeModal}) {
             return <AddToCartModal item={item} stateCart={stateCart} closeModal={closeModal}/>;
         
         case "makeOrder":
-            return <MakeOrder/>;    
+            return <MakeOrder/>;   
         default:
             break;
     }

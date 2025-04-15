@@ -1,9 +1,19 @@
 import logo from "../../assets/logo/logo.png"
 import burgerMain from "../../assets/logo/burgerMain.png"
 
+import { ControlModal } from "../Main/Modal/AddToCartModal/ControlModal"
+
 import "./Header.scss"
 
-export default function Header(){
+export default function Header({stateCart, stateMenu}){
+    const {menu, setMenu} = stateMenu;
+    const {cart, setCart} = stateCart;
+
+    function randBurger(){
+        const randNum = Math.floor(Math.random() * 7);
+        const item = menu[0].items[randNum];
+        ControlModal(item.id, cart, setCart, item, 1);
+    }
     return(
         <div className="wr-header">
             <div className="container">
@@ -24,7 +34,7 @@ export default function Header(){
 
                         <div className="bottom">
                             <p>Бесплатная доставка от 599₽</p>
-                            <button>Добавить</button>
+                            <button onClick={randBurger}>Добавить</button>
 
                         </div>
                     </div>

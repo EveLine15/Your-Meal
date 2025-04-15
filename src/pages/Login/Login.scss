@@ -1,0 +1,44 @@
+.login-content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    @media screen and (max-width: 646px){
+        display: none;
+    }
+
+    img{
+        width: 302px;
+        height: 302px;
+    }
+}
+
+.right-part{
+    form{
+        display: flex;
+        flex-direction: column;
+
+        .login-button{
+            margin-top: 20px;
+        }
+    }
+
+    .link-holder{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 8px;
+        margin-top: 12px;
+        
+        a{
+            text-decoration: none;
+            color: black;
+            transition: .2s;
+        }
+
+        a:hover{
+            color: rgb(255, 112, 32);
+        }
+    }
+
+}

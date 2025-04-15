@@ -1,9 +1,6 @@
-// export default function addToCart(categoryId, itemId){
-// }
+import "./AddToCartModal.scss"
 
-import "./addToCartModal.scss"
-
-import { ControlModal } from "./ControlModal";
+import { ControlModal } from "../AddToCartModal/ControlModal";
 
 import { useState } from "react";
 

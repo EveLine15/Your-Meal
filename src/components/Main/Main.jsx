@@ -4,29 +4,22 @@ import Cart from "./Cart/Cart"
 import Product from "./Product/Product"
 import Modal from "./Modal/Modal"
 
-import order from "../../data/order.json"
-import menuBase from "../../data/menu.json"
-
-
 import { useState } from 'react'
 
-export default function Main(){
-
-    const [cart, setCart] = useState([]);
-    const [menu, setMenu] = useState(menuBase);
-    const [selected, setSelected] = useState(menuBase[0].name);
+export default function Main({stateCart, stateMenu}){
+    const {menu, setMenu} = stateMenu;
+    
+    const [selected, setSelected] = useState(menu[0].name);
     const [isOpen, setIsOpen] = useState(false);
     const [categoryId, setCategoryId] = useState(null);
     const [item, setItem] = useState(null);
 
-    const stateCart = {cart, setCart};
-    const stateMenu = {menu, setMenu};
+
     const stateSelected = {selected, setSelected};
     const stateIsOpen = {isOpen, setIsOpen}
 
     const currentCategory = menu.find(category => category.name === selected);
 
-    console.log(cart)
 
     return(
         <div className="wr-main">
