@@ -1,6 +1,7 @@
 import Header from "../../components/Header/Header";
 import Main from "../../components/Main/Main";
 import Footer from "../../components/Footer/Footer";
+import User from "../../components/User/User"
 
 import menuBase from "../../data/menu.json"
 
@@ -14,6 +15,7 @@ export default function Home(){
     const stateMenu = {menu, setMenu};
     return(
         <>
+            <User/>
             <Header stateCart={stateCart} stateMenu={stateMenu}/>
             <Main stateCart={stateCart} stateMenu={stateMenu}/>
             <Footer/>

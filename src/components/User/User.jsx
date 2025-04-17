@@ -15,7 +15,7 @@ export default function User(){
     }
     return(
         <div className="user-wr">
-            <button onClick={handleLogOut}>Log out</button>
+            <button className="logOut-btn" onClick={handleLogOut}>Log out</button>
         </div>
     )
 }

@@ -1,6 +1,5 @@
 import logo from "../../assets/logo/logo.png"
 import burgerMain from "../../assets/logo/burgerMain.png"
-import User from "../User/User"
 
 import { ControlModal } from "../Main/Modal/AddToCartModal/ControlModal"
 
@@ -17,7 +16,6 @@ export default function Header({stateCart, stateMenu}){
     }
     return(
         <div className="wr-header">
-            <User/>
             <div className="container">
                 <div className="logo">
                     <img src={logo} alt="logo"/>

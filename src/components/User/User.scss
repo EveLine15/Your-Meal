@@ -1,0 +1,22 @@
+.user-wr{
+    position: fixed;
+    z-index: 50;
+    top: 0;
+    right: 0;
+    margin: 20px;
+
+    .logOut-btn{
+        padding: 10px 20px;
+        background-color: rgb(255, 92, 0);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 20px;
+        font-weight: 800;
+        transition: .2s;
+
+        &:hover{
+            transform: scale(1.2);
+        }
+    }
+}
