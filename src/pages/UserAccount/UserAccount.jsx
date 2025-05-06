@@ -17,21 +17,23 @@ export default function UserAccount() {
     const [profileChange, setProfileChange] = useState(false);
 
     const changeUser = async (newName) => {
-        try {
-            const { data } = await updateUser({ uid: user.uid, updates: { login: newName } });
- 
-            dispatch(setUser({
-              uid: user.uid,
-              email: user.email,
-              login: newName,
-              avatar: user.avatar,
-              address: user.address,
-              cardNumber: user.cardNumber,
-              createdAt: user.createdAt
-            }));
-          } catch (err) {
-            console.error("Error updating user:", err);
-          }
+      if (newName === "") return;
+      
+      try {
+          const { data } = await updateUser({ uid: user.uid, updates: { login: newName } });
+
+          dispatch(setUser({
+            uid: user.uid,
+            email: user.email,
+            login: newName,
+            avatar: user.avatar,
+            address: user.address,
+            cardNumber: user.cardNumber,
+            createdAt: user.createdAt
+          }));
+        } catch (err) {
+          console.error("Error updating user:", err);
+        }
     }
 
     const handleLogOut = () => {

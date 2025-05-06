@@ -1,11 +1,10 @@
   import './App.scss'
 
-  import { Route, Routes, useNavigate, useLocation, Navigate } from "react-router";
+  import { Route, Routes, useNavigate, useLocation} from "react-router";
   import { useEffect } from 'react';
   import { getAuth, onAuthStateChanged } from "firebase/auth";
   import { useDispatch } from 'react-redux';
   import { setUser, clearUser } from '../store/slices/authSlice';
-  import { useAddUserMutation } from '../services/firebaseApi';
 
   import Login from '../pages/Login/Login';
   import Home from '../pages/Home/Home';
@@ -18,10 +17,9 @@
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const location = useLocation();
-    const [addUser] = useAddUserMutation();
 
     useEffect(() => {
-      const unsubscribe = onAuthStateChanged(auth, async (userCurrent) => {
+      onAuthStateChanged(auth, async (userCurrent) => {
         if (userCurrent) {
           const res = await fetch(
             `https://burger-6e37c-default-rtdb.firebaseio.com/users/${userCurrent.uid}.json`
@@ -52,15 +50,12 @@
           }
         }
       });
-    
-      return () => unsubscribe();
     }, [auth, navigate, dispatch, location.pathname]);
     
 
     return(
       <>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />}/>
         <Route path="/home" element={<Home />}/>
         <Route path='/register' element={<Register/>}/>
