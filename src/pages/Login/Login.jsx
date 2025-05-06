@@ -2,11 +2,14 @@ import "./Login.scss"
 import { Link, useNavigate } from "react-router"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../store/slices/authSlice";
 
 import donut from "../../assets/images/donut.png"
 
 export default function Login(){
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const auth = getAuth();
 
     const [loginData, setLoginData] = useState({
@@ -22,28 +25,53 @@ export default function Login(){
 
     const [submitted, setSubmitted] = useState(false);
 
-    const handleAuth = (e) => {
+    const handleAuth = async (e) => {
         e.preventDefault();
         setSubmitted(true);
-        
+
         const newErrors = {};
         if (!loginData.email) newErrors.errorEmail = true;
         if (!loginData.password) newErrors.errorPassword = true;
         
         setError(newErrors);
-        
+
         if (Object.keys(newErrors).length === 0) {
-            signInWithEmailAndPassword(auth, loginData.email, loginData.password)
-                .then((userCredential) => {
-                    const user = userCredential.user;
-                    console.log(user)
-                    navigate("/home")
-                })
-                .catch((error) => {
-                    setError({...error, errorUnauth: true})
-                });
+            try {
+                const userCredential = await signInWithEmailAndPassword(
+                  auth,
+                  loginData.email,
+                  loginData.password
+                );
+                const user = userCredential.user;
+          
+                const res = await fetch(
+                  `https://burger-6e37c-default-rtdb.firebaseio.com/users/${user.uid}.json`
+                );
+                const userData = await res.json();
+          
+                if (userData) {
+                  dispatch(
+                    setUser({
+                      uid: user.uid,
+                      email: user.email,
+                      login: userData.login || "",
+                      avatar: userData.avatar || "",
+                      address: userData.address || "",
+                      cardNumber: userData.cardNumber || "",
+                      createdAt: userData.createdAt || "",
+                    })
+                  );
+                  navigate("/home");
+                } else {
+                  setError("Пользователь не найден в базе данных");
+                }
+              } catch (err) {
+                console.error("Ошибка входа:", err);
+                setError("Неверный email или пароль");
+              }
         }
-        }
+    
+      };
 
     return(
         <div className="wr-reg">

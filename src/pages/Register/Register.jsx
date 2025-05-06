@@ -2,12 +2,17 @@ import "./Register.scss"
 import { Link, useNavigate } from "react-router"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
+import { useAddUserMutation } from "../../services/firebaseApi";
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../store/slices/authSlice';
 
 import donut from "../../assets/images/donut.png"
 
 export default function Register(){
     const auth = getAuth();
     const navigate = useNavigate();
+    const [addUser] = useAddUserMutation();
+    const dispatch = useDispatch();
 
     const [formData, setFormData] = useState({
         name: "",
@@ -25,30 +30,53 @@ export default function Register(){
 
     const [submitted, setSubmitted] = useState(false);
 
-    const handleRegister = (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
         setSubmitted(true);
-
+    
         const newErrors = {};
         if (!formData.name) newErrors.errorName = true;
         if (!formData.email) newErrors.errorEmail = true;
         if (!formData.password) newErrors.errorPassword = true;
         if (formData.password !== formData.confirmPassword) newErrors.errorConfirmPassword = true;
-      
+    
         setError(newErrors);
-      
+    
         if (Object.keys(newErrors).length === 0) {
-            createUserWithEmailAndPassword(auth, formData.email, formData.password)
-                .then((userCredential) => {
-                    console.log(userCredential)
-                    navigate("/home");
-                })
-                .catch((error) => {
-                    console.log(error)
-                });
-        }
+          try {
+            const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+            const { user } = userCredential;
+    
+            dispatch(setUser({
+              uid: user.uid,
+              email: user.email,
+            }));
+    
+            const newUserData = {
+                email: user.email,
+                login: formData.name,
+                avatar: "",
+                address: "",
+                cardNumber: "",
+                createdAt: new Date().toISOString()
+            };
 
-    }
+            const result = await addUser({
+                uid: user.uid,
+                newUser: newUserData
+            });
+
+            if ('error' in result) {
+                console.error("Failed to add user to database:", result.error);
+            }
+    
+            navigate("/home");
+    
+          } catch (error) {
+            console.error("Registration error:", error);
+          }
+        }
+      };
 
     return(
         <div className="wr-reg">

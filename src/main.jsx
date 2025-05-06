@@ -3,16 +3,22 @@ import { createRoot } from 'react-dom/client'
 import './style/index.scss'
 import App from './app/App'
 import { BrowserRouter } from 'react-router'
+import { Provider } from 'react-redux'
+import { store } from './store/index.js'
 
-import firebase from './firebaseConfig'
 import { initializeApp } from 'firebase/app'
+import { getDatabase} from "firebase/database";
+import { firebaseConfig } from './firebaseConfig';
 
-initializeApp(firebase);
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </BrowserRouter>
   </StrictMode>,
 )

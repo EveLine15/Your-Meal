@@ -1,21 +1,12 @@
 import "./User.scss"
-import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router";
 
 export default function User(){
-    const auth = getAuth();
     const navigate = useNavigate();
 
-    const handleLogOut = () => {
-        signOut(auth).then(() => {
-            navigate("/login")
-          }).catch((error) => {
-            // An error happened.
-          });
-    }
     return(
         <div className="user-wr">
-            <button className="logOut-btn" onClick={handleLogOut}>Log out</button>
+            <button className="profile-btn" onClick={() => navigate("/account")}>Go to profile</button>
         </div>
     )
 }
