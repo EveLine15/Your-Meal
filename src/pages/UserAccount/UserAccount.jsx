@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../store/slices/authSlice";
 import { getAuth, signOut } from "firebase/auth";
 
-import defaultAvatar from "../../assets/icons/defaulIcon.png"
+import defaultAvatar from "../../assets/icons/defaultIcon.png"
 
 export default function UserAccount() {
     const dispatch = useDispatch();
@@ -44,14 +44,14 @@ export default function UserAccount() {
   return (
     <div className="wr-user">
         <div className="user-info">
+            <img className="avatar" src={user?.avatar ? "" : defaultAvatar} alt="avatar"/>
             <div className={`show-block ${!profileChange}`}>
-                <img className="avatar" src={user?.avatar ? "" : defaultAvatar} alt="avatar"/>
                 <h1>Login: {user?.login}</h1>
-                <h2>Email: {user?.email}</h2>
-                <h2>Address: {user?.address}</h2>
-                <h2>Card number: {user?.cardNumber}</h2>
+                <h3>Email: {user?.email}</h3>
+                <h3>Address: {user?.address}</h3>
+                <h3>Card number: {user?.cardNumber}</h3>
                 <button onClick={() => setProfileChange(true)}>Edit profile</button>
-                <button onClick={handleLogOut}>Log out</button>
+                <button className="logOut-btn" onClick={handleLogOut}>Log out</button>
             </div>
 
 
@@ -61,12 +61,12 @@ export default function UserAccount() {
                         changeUser(newName);
                         setProfileChange(false)
                     }}>
-                    <label>Name:</label>
-                    <input type="text" placeholder={"login"} value={newName} onChange={(e) => setNewName(e.target.value)}/>
+                    <h2>Login:</h2>
+                    <input type="text" placeholder={"New login"} value={newName} onChange={(e) => setNewName(e.target.value)}/>
 
                     <div className="change-buttons">
                         <button>Save</button>
-                        <button>Cancel</button>
+                        <button className="cancel-btn" onClick={() => setProfileChange(false)}>Cancel</button>
                     </div>
                 </form>
 

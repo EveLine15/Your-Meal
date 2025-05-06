@@ -3,15 +3,24 @@
     .user-info{
         background: #FFA800;
         width: 30%;
-        padding-left: 45px;
-        height: 100vh;
+        padding: 20px 45px;
+        min-height: 100vh;
     }
 
     .false{
-        display: none;
+        display: none !important;
+    }
+
+    .avatar{
+        width: 300px;
+        height: 300px;
     }
 
     .show-block{
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+
         button{
             padding: 5px 15px;
             background-color: rgb(255, 92, 0);
@@ -26,6 +35,10 @@
             &:hover{
                 transform: scale(1.1);
             }
+        }
+
+        .logOut-btn{
+            background-color: #ff0000;
         }
     }
 
@@ -62,6 +75,26 @@
         .change-buttons{
             display: flex;
             column-gap: 15px;
+
+            button{
+                padding: 5px 15px;
+                background-color: rgb(255, 92, 0);
+                color: white;
+                border: none;
+                border-radius: 12px;
+                font-size: 17px;
+                font-weight: 800;
+                transition: .2s;
+                margin-top: 10px;
+        
+                &:hover{
+                    transform: scale(1.1);
+                }
+            }
+
+            .cancel-btn{
+                background-color: rgb(177, 177, 177);
+            }
         }
     }
 }

@@ -1,11 +1,11 @@
   import './App.scss'
 
-  import { Route, Routes, useNavigate, useLocation } from "react-router";
-  import { useState, useEffect } from 'react';
+  import { Route, Routes, useNavigate, useLocation, Navigate } from "react-router";
+  import { useEffect } from 'react';
   import { getAuth, onAuthStateChanged } from "firebase/auth";
   import { useDispatch } from 'react-redux';
   import { setUser, clearUser } from '../store/slices/authSlice';
-  import { useAddUserMutation, useGetUsersQuery } from '../services/firebaseApi';
+  import { useAddUserMutation } from '../services/firebaseApi';
 
   import Login from '../pages/Login/Login';
   import Home from '../pages/Home/Home';
@@ -39,12 +39,14 @@
               createdAt: userData.createdAt || "",
             }));
           }
-        }
-
-        if (userCurrent && location.pathname === "/login") {
-          navigate("/home");
-        } else if (!userCurrent && location.pathname !== "/login") {
-          const publicRoutes = ["/login", "/register", "/forgotPass"];
+    
+          if (location.pathname === "/login" || location.pathname === "/") {
+            navigate("/home");
+          }
+        } else {
+          dispatch(clearUser());
+    
+          const publicRoutes = ["/", "/login", "/register", "/forgotPass"];
           if (!publicRoutes.includes(location.pathname)) {
             navigate("/login");
           }
@@ -52,11 +54,13 @@
       });
     
       return () => unsubscribe();
-    }, [auth, navigate, dispatch, location]);
+    }, [auth, navigate, dispatch, location.pathname]);
+    
 
     return(
       <>
       <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />}/>
         <Route path="/home" element={<Home />}/>
         <Route path='/register' element={<Register/>}/>
