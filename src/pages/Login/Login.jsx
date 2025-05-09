@@ -1,16 +1,15 @@
 import "./Login.scss"
 import { Link, useNavigate } from "react-router"
+import { useLazyGetUserQuery } from "../../services/firebaseApi";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setUser } from "../../store/slices/authSlice";
 
 import donut from "../../assets/images/donut.png"
 
 export default function Login(){
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     const auth = getAuth();
+    const [triggerGetUser] = useLazyGetUserQuery();
 
     const [loginData, setLoginData] = useState({
         email: "",
@@ -43,28 +42,14 @@ export default function Login(){
                   loginData.password
                 );
                 const user = userCredential.user;
-          
-                const res = await fetch(
-                  `https://burger-6e37c-default-rtdb.firebaseio.com/users/${user.uid}.json`
-                );
-                const userData = await res.json();
-          
-                if (userData) {
-                  dispatch(
-                    setUser({
-                      uid: user.uid,
-                      email: user.email,
-                      login: userData.login || "",
-                      avatar: userData.avatar || "",
-                      address: userData.address || "",
-                      cardNumber: userData.cardNumber || "",
-                      createdAt: userData.createdAt || "",
-                    })
-                  );
+ 
+                const result = await triggerGetUser(user.uid).unwrap();
+                if (result) {
                   navigate("/home");
                 } else {
                   setError("Пользователь не найден в базе данных");
                 }
+                
               } catch (err) {
                 console.error("Ошибка входа:", err);
                 setError("Неверный email или пароль");

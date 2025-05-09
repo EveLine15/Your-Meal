@@ -3,8 +3,6 @@ import { Link, useNavigate } from "react-router"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { useAddUserMutation } from "../../services/firebaseApi";
-import { useDispatch } from 'react-redux';
-import { setUser } from '../../store/slices/authSlice';
 
 import donut from "../../assets/images/donut.png"
 
@@ -12,7 +10,6 @@ export default function Register(){
     const auth = getAuth();
     const navigate = useNavigate();
     const [addUser] = useAddUserMutation();
-    const dispatch = useDispatch();
 
     const [formData, setFormData] = useState({
         name: "",
@@ -43,38 +40,32 @@ export default function Register(){
         setError(newErrors);
     
         if (Object.keys(newErrors).length === 0) {
-          try {
-            const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
-            const { user } = userCredential;
-    
-            dispatch(setUser({
-              uid: user.uid,
-              email: user.email,
-            }));
-    
-            const newUserData = {
-                email: user.email,
-                login: formData.name,
-                avatar: "",
-                address: "",
-                cardNumber: "",
-                createdAt: new Date().toISOString()
-            };
+            createUserWithEmailAndPassword(auth, formData.email, formData.password)
+            .then(user => {
+                const newUserData = {
+                    email: user.email,
+                    login: formData.name,
+                    avatar: "",
+                    address: "",
+                    cardNumber: "",
+                    createdAt: new Date().toISOString()
+                };
 
-            const result = await addUser({
-                uid: user.uid,
-                newUser: newUserData
-            });
-
-            if ('error' in result) {
-                console.error("Failed to add user to database:", result.error);
-            }
+                addUser({ 
+                    uid: user.uid,
+                    newUser: newUserData
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+            })
+    
+            .catch((error) => {
+                console.error("Failed to add user to service:", error);
+                auth.currentUser.delete();
+            })
     
             navigate("/home");
-    
-          } catch (error) {
-            console.error("Registration error:", error);
-          }
         }
       };
 

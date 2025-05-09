@@ -9,7 +9,6 @@ export default function Cart({stateCart, setCategoryId, stateIsOpen}){
     const {cart, setCart} = stateCart;
     const {isOpen, setIsOpen} = stateIsOpen;
     const [selfWindow, setSelfWindow] = useState(window.innerWidth);
-    console.log(selfWindow)
 
     const [cartOpen, setCartOpen] = useState(selfWindow >= 1044);
 

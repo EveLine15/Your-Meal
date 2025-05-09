@@ -1,33 +1,56 @@
-    import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+// services/firebaseApi.js
+import { getDatabase, ref, get, set, update, child } from "firebase/database";
+import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
 
-    export const firebaseApi = createApi({
-        reducerPath: "firebaseApi",
-        baseQuery: fetchBaseQuery({ 
-            baseUrl: "https://burger-6e37c-default-rtdb.firebaseio.com/"
-        }),
+export const firebaseApi = createApi({
+  reducerPath: "firebaseApi",
+  baseQuery: fakeBaseQuery(),
+  endpoints: (builder) => ({
+    getUser: builder.query({
+      queryFn: async (uid) => {
+        try {
+          const dbRef = ref(getDatabase());
+          const snapshot = await get(child(dbRef, `users/${uid}`));
+          if (snapshot.exists()) {
+            return { data: snapshot.val() };
+          } else {
+            return { error: { status: 404, message: "User not found" } };
+          }
+        } catch (err) {
+          return { error: { status: 500, message: err.message } };
+        }
+      },
+    }),
 
-        endpoints: (builder) => ({
-            getUsers: builder.query({
-                query: (uid) => `users/${uid}.json`
-            }),
+    addUser: builder.mutation({
+      queryFn: async ({ uid, userData }) => {
+        try {
+          const db = getDatabase();
+          await set(ref(db, `users/${uid}`), userData);
+          return { data: userData };
+        } catch (err) {
+          return { error: { status: 500, message: err.message } };
+        }
+      },
+    }),
 
-            addUser: builder.mutation({
-                query: ({ uid, newUser }) => ({
-                    url: `users/${uid}.json`,
-                    method: 'PUT',
-                    body: newUser
-                })
-            }),
+    updateUser: builder.mutation({
+      queryFn: async ({ uid, updates }) => {
+        try {
+          const db = getDatabase();
+          await update(ref(db, `users/${uid}`), updates);
+          return { data: updates };
+        } catch (err) {
+          return { error: { status: 500, message: err.message } };
+        }
+      },
+    }),
+  }),
+});
 
-            updateUser: builder.mutation({
-                query: ({ uid, updates }) => ({
-                    url: `users/${uid}.json`,
-                    method: 'PATCH',
-                    body: updates
-                })
-            })
-        })
-
-    })
-
-    export const { useGetUsersQuery, useAddUserMutation, useUpdateUserMutation } = firebaseApi;
+export const {
+  useGetUserQuery,
+  useLazyGetUserQuery,
+  useAddUserMutation,
+  useUpdateUserMutation,
+} = firebaseApi;

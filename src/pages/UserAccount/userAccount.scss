@@ -1,10 +1,15 @@
 .wr-user{
+    color: white;
+    display: flex;
 
     .user-info{
         background: #FFA800;
         width: 30%;
-        padding: 20px 45px;
+        padding: 20px 30px;
         min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .false{
@@ -17,6 +22,7 @@
     }
 
     .show-block{
+        width: 100%;
         display: flex;
         flex-direction: column;
         row-gap: 10px;
@@ -43,6 +49,8 @@
     }
 
     .edit-block{
+        width: 100%;
+
         form{
             width: 100%;
             height: 100%;
@@ -95,6 +103,34 @@
             .cancel-btn{
                 background-color: rgb(177, 177, 177);
             }
+        }
+    }
+
+    .orders-block{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+
+        nav{
+            display: flex;
+            column-gap: 25px;
+            padding: 25px 20px;
+
+            a{
+                text-decoration: none;
+                font-size: 20px;
+                color: #FFA800;
+                font-weight: 800;
+                transition: .2s;
+
+                &:hover{
+                    transform: scale(1.2);
+                }
+
+            }
+
+
         }
     }
 }
