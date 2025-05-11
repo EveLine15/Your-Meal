@@ -1,136 +1,58 @@
 .wr-user{
-    color: white;
-    display: flex;
 
-    .user-info{
-        background: #FFA800;
-        width: 30%;
-        padding: 20px 30px;
-        min-height: 100vh;
+    .container{
+        max-width: 1278px;
+        margin: 0 auto;
+
+        @media screen and (max-width: 1316px) {
+            width: 96%;
+        }
+    }
+
+    .nav-block{
         display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .false{
-        display: none !important;
-    }
-
-    .avatar{
-        width: 300px;
-        height: 300px;
-    }
-
-    .show-block{
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        row-gap: 10px;
-
-        button{
-            padding: 5px 15px;
-            background-color: rgb(255, 92, 0);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 17px;
-            font-weight: 800;
-            transition: .2s;
-            margin-top: 10px;
-    
-            &:hover{
-                transform: scale(1.1);
-            }
-        }
-
-        .logOut-btn{
-            background-color: #ff0000;
-        }
-    }
-
-    .edit-block{
-        width: 100%;
-
-        form{
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            row-gap: 8px;
-    
-            input{
-                width: 100%;
-                height: 40px;
-                padding: 12px;
-                box-sizing: border-box;
-                border: 1px solid rgb(242, 242, 243);
-                border-radius: 12px;
-                background: rgb(255, 255, 255);
-    
-                color: rgb(177, 177, 177);
-                font-size: 12px;
-                font-weight: 400;
-                line-height: 130%;
-    
-                &:focus{
-                    outline: none;
-                    border: 1px solid rgb(255, 171, 8);
-                }
-            }
-        }
-
-        .change-buttons{
-            display: flex;
-            column-gap: 15px;
-
-            button{
-                padding: 5px 15px;
-                background-color: rgb(255, 92, 0);
-                color: white;
-                border: none;
-                border-radius: 12px;
-                font-size: 17px;
-                font-weight: 800;
-                transition: .2s;
-                margin-top: 10px;
-        
-                &:hover{
-                    transform: scale(1.1);
-                }
-            }
-
-            .cancel-btn{
-                background-color: rgb(177, 177, 177);
-            }
-        }
-    }
-
-    .orders-block{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
+        position: relative;
 
         nav{
-            display: flex;
+            position: absolute;
+            top: 10px;
+            left: -70px;
+            display: flex;        
+            flex-direction: column;
+            align-items: center;
+            row-gap: 20px;
             column-gap: 25px;
             padding: 25px 20px;
+            width: 10%;
+            height: 90vh;
 
             a{
                 text-decoration: none;
-                font-size: 20px;
-                color: #FFA800;
-                font-weight: 800;
                 transition: .2s;
 
                 &:hover{
                     transform: scale(1.2);
                 }
 
+                &.log-out {
+                    margin-top: auto;
+                }
+
+                &.back-arrow{
+                    margin-bottom: 30px;
+                }
+
+                img{
+                    width: 50px;
+                    height: 50px;
+                }
             }
 
-
         }
+    }
+
+    .tooltip{
+        background-color: rgb(255, 92, 0);
     }
 }

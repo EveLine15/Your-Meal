@@ -11,7 +11,7 @@
   import ForgotPassword from '../pages/ForgotPassword/ForgotPassword';
   import UserAccount from '../pages/userAccount/userAccount';
   import OrdersHistory from '../pages/OrdersHistory/OrdersHistory';
-  import Cart from '../components/Main/Cart/Cart';
+  import UserInfo from '../pages/UserInfo/UserInfo';
 
   export default function App(){
     const auth = getAuth();
@@ -53,6 +53,7 @@
         <Route path='/register' element={<Register/>}/>
         <Route path='/forgotPass' element={<ForgotPassword/>}/>
         <Route path='/account' element={<UserAccount/>}>
+          <Route path="userProfile" element={<UserInfo />} />
           <Route path="orderHistory" element={<OrdersHistory />} />
         </Route>
       </Routes>

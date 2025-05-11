@@ -1,0 +1,20 @@
+@use './vars';
+
+body {
+    font-family: vars.$main-font;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    // button{
+    //     font-family: $main-font;
+    // }
+
+    // a{
+    //     font-family: $main-font;
+    // }
+
+    // label{
+    //     font-family: $main-font;
+    // }
+}

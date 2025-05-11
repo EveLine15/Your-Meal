@@ -6,7 +6,7 @@ export default function User(){
 
     return(
         <div className="user-wr">
-            <button className="profile-btn" onClick={() => navigate("/account")}>Go to profile</button>
+            <button className="profile-btn" onClick={() => navigate("/account/userProfile")}>Go to profile</button>
         </div>
     )
 }

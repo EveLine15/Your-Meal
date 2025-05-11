@@ -1,5 +1,5 @@
 // services/firebaseApi.js
-import { getDatabase, ref, get, set, update, child } from "firebase/database";
+import { getDatabase, ref, get, set, update, child, push } from "firebase/database";
 import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const firebaseApi = createApi({
@@ -45,6 +45,29 @@ export const firebaseApi = createApi({
         }
       },
     }),
+
+    addUserCard: builder.mutation({
+      queryFn: async ({ uid, cardNumber }) => {
+        try {
+          const db = getDatabase();
+          const userRef = ref(db, `users/${uid}/cards`);
+          const snapshot = await get(userRef);
+          const existingCards = snapshot.exists() ? snapshot.val() : [];
+    
+          const updatedCards = Array.isArray(existingCards)
+            ? [...existingCards, cardNumber]
+            : [cardNumber]; // fallback if not an array
+    
+          await update(ref(db, `users/${uid}`), {
+            cards: updatedCards,
+          });
+    
+          return { data: updatedCards };
+        } catch (err) {
+          return { error: { status: 500, message: err.message } };
+        }
+      },
+    }),
   }),
 });
 
@@ -53,4 +76,5 @@ export const {
   useLazyGetUserQuery,
   useAddUserMutation,
   useUpdateUserMutation,
+  useAddUserCardMutation,
 } = firebaseApi;
