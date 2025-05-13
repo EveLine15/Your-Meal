@@ -46,35 +46,34 @@ export const firebaseApi = createApi({
       },
     }),
 
-    addUserCard: builder.mutation({
-      queryFn: async ({ uid, cardNumber }) => {
+    getMenu: builder.query({
+      queryFn: async () => {
         try {
-          const db = getDatabase();
-          const userRef = ref(db, `users/${uid}/cards`);
-          const snapshot = await get(userRef);
-          const existingCards = snapshot.exists() ? snapshot.val() : [];
-    
-          const updatedCards = Array.isArray(existingCards)
-            ? [...existingCards, cardNumber]
-            : [cardNumber]; // fallback if not an array
-    
-          await update(ref(db, `users/${uid}`), {
-            cards: updatedCards,
-          });
-    
-          return { data: updatedCards };
+          const dbRef = ref(getDatabase());
+          const snapshot = await get(child(dbRef, "menu"));
+          const menuData = snapshot.val();
+          if (snapshot.exists()) {
+            return { data: menuData };
+          } else {
+            console.warn("No menu data found");
+            return { error: { status: 404, message: "Menu not found" } };
+          }
         } catch (err) {
+          console.error("Error loading menu:", err);
           return { error: { status: 500, message: err.message } };
         }
-      },
+      }
     }),
+
   }),
+
 });
 
 export const {
   useGetUserQuery,
+  useGetMenuQuery,
   useLazyGetUserQuery,
   useAddUserMutation,
   useUpdateUserMutation,
-  useAddUserCardMutation,
+  useLazyGetMenuQuery
 } = firebaseApi;

@@ -5,7 +5,8 @@ import { PatternFormat } from 'react-number-format';
 import React, { useState, useEffect } from "react";
 import { getAuth } from "firebase/auth";
 import { useLazyGetUserQuery } from "../../services/firebaseApi";
-import { useUpdateUserMutation, useAddUserCardMutation } from "../../services/firebaseApi";
+import { useUpdateUserMutation } from "../../services/firebaseApi";
+import { update } from "firebase/database";
 
 export default function UserInfo() {
         const [updateUser] = useUpdateUserMutation();
@@ -27,7 +28,6 @@ export default function UserInfo() {
         const user = auth.currentUser;
 
         const [triggerGetUser] = useLazyGetUserQuery();
-        const [addUserCard] = useAddUserCardMutation();
 
         const [loading, setLoading] = useState(false);
 
@@ -131,8 +131,9 @@ export default function UserInfo() {
         
         const addNewCard = async () => {
             try {
-                await addUserCard({ uid: user.uid, cardNumber }).unwrap();
                 const newCards = [...(userData.cards || []), cardNumber];
+
+                await updateUser({ uid: user.uid, updates: {cards: newCards, activeCard: cardNumber } }).unwrap();
                  setUserData((prev) => ({
                     ...prev,
                     cards: newCards,
@@ -142,6 +143,38 @@ export default function UserInfo() {
               console.error("Failed to add card:", err);
             }
           };
+
+        const delCard = async (cardIndex) => {
+            if (!userData || !Array.isArray(userData.cards)) return;
+
+            const updatedCards = userData.cards.filter((card, i) => i !== cardIndex);
+
+            try {
+                await updateUser({ 
+                    uid: auth.currentUser.uid, 
+                    updates: { cards: updatedCards } 
+                });
+                setUserData(prev => ({
+                    ...prev,
+                    cards: updatedCards 
+                }))
+                console.log("Card deleted successfully");
+                } catch (err) {
+                    console.error("Error deleting card:", err);
+                }
+        };
+
+        const changeActiveCard = async (card) => {
+            try {
+                await updateUser({
+                uid: auth.currentUser.uid,
+                updates: { activeCard: card }
+                });
+                console.log("Active card updated");
+            } catch (err) {
+                console.error("Failed to update active card:", err);
+            }
+        };
 
         return (
         <div className="user-info">
@@ -241,11 +274,15 @@ export default function UserInfo() {
                             {Array.isArray(userData?.cards) && userData.cards.map((card, index) => (
                                 <div className="card-block" key={index}>
                                 <label htmlFor={`card-${index}`}>
-                                    <input type="radio" id={`card-${index}`} name="card" />
+                                    <input 
+                                        type="radio" 
+                                        id={`card-${index}`} 
+                                        name="card" 
+                                        onChange={() => changeActiveCard(card)}/>
                                     <span className="custom-radio"></span>
                                     Card {index + 1}: {card}
                                 </label>
-                                <button>Удалить</button>
+                                <button onClick={() => delCard(index)}>Удалить</button>
                                 </div>
                             ))}
                         </div>

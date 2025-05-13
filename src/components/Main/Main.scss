@@ -56,5 +56,11 @@
             line-height: 120%;
             grid-column: 1 / -1;
         }
+
+        p{
+            color: rgb(0, 0, 0);
+            font-size: clamp(16px, 2vw, 24px);
+            font-weight: 700;
+        }
     }
 }

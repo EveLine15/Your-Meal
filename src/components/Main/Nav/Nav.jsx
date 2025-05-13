@@ -1,7 +1,6 @@
 import "./Nav.scss"
 
-export default function Nav({stateMenu, stateSelected}){
-    const {menu, setMenu} = stateMenu;
+export default function Nav({stateSelected, menu}){
     const {selected, setSelected} = stateSelected;
 
     return(

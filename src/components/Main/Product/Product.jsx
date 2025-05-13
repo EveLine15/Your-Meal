@@ -5,7 +5,7 @@ export default function Products(props) {
     return (
         <div className="card">
             <div className="img-wr">
-                <img src={props.img} alt={props.name} />
+                <img src={props.img} alt={props.name} loading="lazy"/>
             </div>
             <div className="text-block">
                 <h3>{props.price}₽</h3>
