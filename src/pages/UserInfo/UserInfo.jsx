@@ -2,11 +2,10 @@ import "./UserInfo.scss"
 import defaultAvatar from "../../assets/icons/defaultIcon.svg"
 import imageBorder from "../../assets/icons/imageBorder.svg"
 import { PatternFormat } from 'react-number-format';
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getAuth } from "firebase/auth";
 import { useLazyGetUserQuery } from "../../services/firebaseApi";
 import { useUpdateUserMutation } from "../../services/firebaseApi";
-import { update } from "firebase/database";
 
 export default function UserInfo() {
         const [updateUser] = useUpdateUserMutation();
@@ -24,17 +23,16 @@ export default function UserInfo() {
         const [cardAdd, setCardAdd] = useState(false);
         const [cardNumber, setCardNumber] = useState("");
 
-        const auth = getAuth();
-        const user = auth.currentUser;
+        const user = getAuth().currentUser;
 
         const [triggerGetUser] = useLazyGetUserQuery();
 
         const [loading, setLoading] = useState(false);
 
-         const fetchUserData = async () => {
+        const fetchUserData = async () => {
                 if (!user) return;
                 try {
-                  const { data } = await triggerGetUser(auth.currentUser?.uid);
+                  const { data } = await triggerGetUser(user?.uid);
                   if (data) setUserData(data);
                 } catch (err) {
                   console.error("Failed to load user data", err);
@@ -77,7 +75,6 @@ export default function UserInfo() {
 
         const changeUser = async () => {
             const updates = {};
-            console.log(newName)
             if (newName.login.trim() !== "") updates.login = newName.login;
             if (newName.name?.trim() !== "") updates.name = newName.name;
             if (newName.surname?.trim() !== "") updates.surname = newName.surname;
@@ -85,7 +82,7 @@ export default function UserInfo() {
 
             try {
                 await updateUser({
-                uid: auth.currentUser.uid,
+                uid: user.uid,
                 updates
                 });
                 setProfileChange(false);
@@ -116,7 +113,7 @@ export default function UserInfo() {
         
             try {
                 await updateUser({
-                    uid: auth.currentUser.uid,
+                    uid: user.uid,
                     updates,
                 });
                 setUserData(prev => ({
@@ -142,7 +139,7 @@ export default function UserInfo() {
             } catch (err) {
               console.error("Failed to add card:", err);
             }
-          };
+        };
 
         const delCard = async (cardIndex) => {
             if (!userData || !Array.isArray(userData.cards)) return;
@@ -151,7 +148,7 @@ export default function UserInfo() {
 
             try {
                 await updateUser({ 
-                    uid: auth.currentUser.uid, 
+                    uid: user.uid, 
                     updates: { cards: updatedCards } 
                 });
                 setUserData(prev => ({
@@ -167,9 +164,14 @@ export default function UserInfo() {
         const changeActiveCard = async (card) => {
             try {
                 await updateUser({
-                uid: auth.currentUser.uid,
+                uid: user.uid,
                 updates: { activeCard: card }
                 });
+
+                setUserData(prev => ({
+                    ...prev,
+                    activeCard: card 
+                }))
                 console.log("Active card updated");
             } catch (err) {
                 console.error("Failed to update active card:", err);
@@ -278,6 +280,8 @@ export default function UserInfo() {
                                         type="radio" 
                                         id={`card-${index}`} 
                                         name="card" 
+                                        value={card}
+                                        checked={userData.activeCard === card}
                                         onChange={() => changeActiveCard(card)}/>
                                     <span className="custom-radio"></span>
                                     Card {index + 1}: {card}

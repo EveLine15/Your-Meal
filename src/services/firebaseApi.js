@@ -65,6 +65,64 @@ export const firebaseApi = createApi({
       }
     }),
 
+    addOrder: builder.mutation({
+      queryFn: async ({ uid, order }) => {
+        try {
+          if (!uid) throw new Error("Missing user ID");
+
+          const db = getDatabase();
+          const ordersRef = ref(db, `users/${uid}/orders`);
+
+          const snapshot = await get(ordersRef);
+          const existingOrders = snapshot.exists() ? snapshot.val() : [];
+
+          const ordersArray = Array.isArray(existingOrders)
+            ? existingOrders
+            : Object.values(existingOrders);
+
+          const newOrder = {
+            ...order,
+            id: Date.now().toString(),
+          };
+
+          ordersArray.push(newOrder);
+
+          await set(ordersRef, ordersArray);
+
+          return { data: newOrder };
+        } catch (err) {
+          return { error: { status: 500, message: err.message } };
+        }
+      },
+    }),
+
+    getCart: builder.query({
+      queryFn: async (uid) => {
+        try {
+          const dbRef = ref(getDatabase());
+          const snapshot = await get(child(dbRef, `users/${uid}/cart`));
+          if (snapshot.exists()) {
+            return { data: snapshot.val() };
+          } else {
+            return { data: [] }
+          }
+        } catch (err) {
+          return { error: { status: 500, message: err.message } };
+        }
+      },
+    }),
+
+    updateCart: builder.mutation({
+        async queryFn({ uid, cart }) {
+            try {
+                const db = getDatabase();
+                await set(ref(db, `users/${uid}/cart`), cart);
+                return { data: { success: true } };
+            } catch (error) {
+                return { error };
+            }
+        },
+    }),
   }),
 
 });
@@ -75,5 +133,8 @@ export const {
   useLazyGetUserQuery,
   useAddUserMutation,
   useUpdateUserMutation,
-  useLazyGetMenuQuery
+  useLazyGetMenuQuery,
+  useAddOrderMutation,
+  useLazyGetCartQuery,
+  useUpdateCartMutation
 } = firebaseApi;

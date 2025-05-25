@@ -48,7 +48,8 @@ export default function Register(){
                     avatar: "",
                     address: "",
                     cardNumber: "",
-                    createdAt: new Date().toISOString()
+                    createdAt: new Date().toISOString(),
+                    cart: []
                 };
 
                 addUser({ 

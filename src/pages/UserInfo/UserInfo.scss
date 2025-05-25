@@ -194,7 +194,7 @@
             opacity: 0;
             cursor: pointer;
 
-            &:checked ~ .custom-radio {
+            &:checked + .custom-radio {
                 border-color: rgb(255, 92, 0);
                 background-color: #fff;
 

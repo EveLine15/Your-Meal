@@ -1,4 +1,4 @@
-import AddToCartModal from "./addToCartModal/addToCartModal";
+import AddToCartModal from "./AddToCartModal/AddToCartModal";
 import MakeOrder from "./MakeOrder/MakeOrder";
 
 export default function RenderModal({categoryId, item, stateCart, closeModal}) {

@@ -1,16 +1,19 @@
 import "./AddToCartModal.scss"
 
-import { ControlModal } from "../AddToCartModal/ControlModal";
+import { useControlModal } from "./useControlModal";
 
 import { useState } from "react";
 
 export default function AddToCartModal({item, stateCart, closeModal}){
     const {id, name, img, weight, price, description, compos, calories} = item;
-
-    const {cart, setCart} = stateCart;
+    const controlCart = useControlModal();
 
     const [addAmount, setAddAmount] = useState(0);
 
+    const handleAdd = async () => {
+        await controlCart(item, addAmount);
+        closeModal();
+    };
 
     return(
         <div className="wr-modal">
@@ -40,7 +43,7 @@ export default function AddToCartModal({item, stateCart, closeModal}){
 
                 </div>
 
-                <button className={`add-btn-modal ${addAmount === 0 ? "add-btn-disabled" : ""}`} disabled={addAmount === 0} onClick={() => {ControlModal(id, cart, setCart, {...item}, addAmount); closeModal()}}>Добавить</button>
+                <button className={`add-btn-modal ${addAmount === 0 ? "add-btn-disabled" : ""}`} disabled={addAmount === 0} onClick={handleAdd}>Добавить</button>
 
                 <div className="add">
                     <div className="amount-control">

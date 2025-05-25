@@ -55,6 +55,7 @@
         <Route path='/account' element={<UserAccount/>}>
           <Route path="userProfile" element={<UserInfo />} />
           <Route path="orderHistory" element={<OrdersHistory />} />
+          
         </Route>
       </Routes>
       </> 
