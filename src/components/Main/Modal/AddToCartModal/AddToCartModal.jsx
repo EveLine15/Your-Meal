@@ -4,7 +4,7 @@ import { useControlModal } from "./useControlModal";
 
 import { useState } from "react";
 
-export default function AddToCartModal({item, stateCart, closeModal}){
+export default function AddToCartModal({item, closeModal}){
     const {id, name, img, weight, price, description, compos, calories} = item;
     const controlCart = useControlModal();
 

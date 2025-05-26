@@ -1,23 +1,49 @@
-export const changeAmount = (id, change, cart, setCart) => {
+import { setCart } from "../../../../../store/slices/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useUpdateCartMutation } from "../../../../../services/firebaseApi";
+import { getAuth } from "firebase/auth";
 
-  const currentAmount = cart.find(item => item.id === id).amount;
-  if(currentAmount <= 1 && change === -1) {
-      setCart(cart.filter(item => item.id !== id));
-      return;
-  }
+export const useChangeAmount = () => {
+    const dispatch = useDispatch();
+    const [updateCart] = useUpdateCartMutation();
 
-  const arr = cart.map(item => {
-      if(item.id === id){
-          const newAmount = +item.amount + change;
-          return{
-              ...item,
-              amount: newAmount
-          }
-      }
+    const user = getAuth().currentUser;
 
-      return item;
-  })
+    const { items: cart } = useSelector((state) => state.cart);
 
-  setCart(arr);
+    const updateOrderAmount = (id, change) => {
+        let newCart;
+        
+        const currentAmount = cart.find(item => item.id === id).amount;
 
+        if(currentAmount <= 1 && change === -1) {
+            newCart = (cart.filter(item => item.id !== id));
+            return;
+        }
+
+        newCart = cart.map(item => {
+            if(item.id === id){
+                const newAmount = +item.amount + change;
+                return{
+                    ...item,
+                    amount: newAmount
+                }
+            }
+
+            return item;
+        })
+
+        const updateCartInDb = async () => {
+            try {
+                await updateCart({ uid: user.uid, cart: newCart }).unwrap();
+            } catch (err) {
+                console.error("Failed to update cart in Firebase:", err);
+            }
+        }
+
+        dispatch(setCart(newCart));
+        updateCartInDb();
+    }
+
+    return updateOrderAmount;
 }

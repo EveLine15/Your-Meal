@@ -28,9 +28,9 @@ export const useControlModal = () => {
         dispatch(setCart(updatedCart));
 
         try {
-        await updateCart({ uid: user.uid, cart: updatedCart }).unwrap();
+            await updateCart({ uid: user.uid, cart: updatedCart }).unwrap();
         } catch (err) {
-        console.error("Failed to update cart in Firebase:", err);
+            console.error("Failed to update cart in Firebase:", err);
         }
     }
 

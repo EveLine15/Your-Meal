@@ -1,8 +1,9 @@
 import "./Order.scss"
 
-import { changeAmount } from "./helper/helper"
+import { useChangeAmount } from "./helper/helper"
 
 export default function Order({id, name, img, weight, price, description, compos, calories, amount, cart, setCart}){
+    const updateOrderAmount = useChangeAmount();
     
     return (
         <div className="wr-orders">
@@ -20,9 +21,9 @@ export default function Order({id, name, img, weight, price, description, compos
                 </div>
 
                 <div className="amount-control">
-                    <button onClick={() => changeAmount(id, -1, cart, setCart)}>-</button>
+                    <button onClick={() => updateOrderAmount(id, -1)}>-</button>
                     <p>{amount}</p>
-                    <button onClick={() => changeAmount(id, 1, cart, setCart)}>+</button>
+                    <button onClick={() => updateOrderAmount(id, 1)}>+</button>
                 </div>
 
             </div>

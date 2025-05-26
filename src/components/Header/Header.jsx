@@ -1,16 +1,17 @@
 import logo from "../../assets/logo/logo.png"
 import burgerMain from "../../assets/logo/burgerMain.png"
 
-//import { ControlModal } from "../Main/Modal/AddToCartModal/ControlModal"
-import { useLazyGetMenuQuery } from "../../services/firebaseApi"
+import { useLazyGetMenuQuery } from "../../services/firebaseApi";
+import { useControlModal } from "../Main/Modal/AddToCartModal/useControlModal";
 
 import "./Header.scss"
 import { useState, useEffect } from "react"
 
-export default function Header({stateCart}){
+export default function Header(){
+
     const [triggerGetMenu] = useLazyGetMenuQuery();
     const [menu, setMenu] = useState([]);
-    const {cart, setCart} = stateCart;
+    const controlCart = useControlModal();
 
     useEffect(() => {
     const fetchMenu = async () => {
@@ -24,15 +25,15 @@ export default function Header({stateCart}){
         } catch (err) {
         console.error("Error fetching menu:", err);
         }
-    };
+        };
 
-    fetchMenu();
+        fetchMenu();
     }, [triggerGetMenu]);
 
     function randBurger(){
         const randNum = Math.floor(Math.random() * 7);
         const item = menu[0].items[randNum];
-        //ControlModal(item.id, cart, setCart, item, 1);
+        controlCart(item, 1);
     }
     return(
         <div className="wr-header">

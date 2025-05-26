@@ -7,7 +7,7 @@ import Modal from "./Modal/Modal"
 import { useState, useEffect } from 'react'
 import { useLazyGetMenuQuery } from "../../services/firebaseApi"
 
-export default function Main({stateCart}){
+export default function Main(){
     const [triggerGetMenu] = useLazyGetMenuQuery();
     
     const [menu, setMenu] = useState([]);
@@ -48,7 +48,7 @@ export default function Main({stateCart}){
                 </div>
 
                 <div className="main-container">
-                    <Cart stateCart={stateCart} setCategoryId={setCategoryId} stateIsOpen={stateIsOpen}/>
+                    <Cart setCategoryId={setCategoryId} stateIsOpen={stateIsOpen}/>
                     <div className="card-block">
                         <div className="card-holder">
                             <h1 className="selected-items">{selected}</h1>
@@ -69,7 +69,7 @@ export default function Main({stateCart}){
 
                     </div>
                 
-                <Modal categoryId={categoryId} isOpen={isOpen} closeModal={() => {setIsOpen(false)}} item={item} stateCart={stateCart}/>
+                <Modal categoryId={categoryId} isOpen={isOpen} closeModal={() => {setIsOpen(false)}} item={item}/>
                 </div>
             </div>
         </div>

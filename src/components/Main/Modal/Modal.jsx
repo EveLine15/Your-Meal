@@ -8,7 +8,7 @@ export default function Modal({categoryId, isOpen, closeModal, item, stateCart})
     return(
         <div className="modal">
             <div className="modal-body">
-                <RenderModal categoryId={categoryId} item={item} stateCart={stateCart} closeModal={closeModal}/>
+                <RenderModal categoryId={categoryId} item={item} closeModal={closeModal}/>
                 <button className="cross" onClick={closeModal}><img src={cross} alt="cross"/></button>
             </div>
         </div>
