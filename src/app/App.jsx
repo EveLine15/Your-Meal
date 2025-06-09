@@ -9,9 +9,12 @@
   import Home from '../pages/Home/Home';
   import Register from '../pages/Register/Register';
   import ForgotPassword from '../pages/ForgotPassword/ForgotPassword';
-  import UserAccount from '../pages/userAccount/userAccount';
+  import UserAccount from '../pages/UserAccount/UserAccount';
   import OrdersHistory from '../pages/OrdersHistory/OrdersHistory';
   import UserInfo from '../pages/UserInfo/UserInfo';
+  import About from '../pages/About/About';
+  import AddMeal from '../pages/AddMeal/AddMeal';
+  import Admin from '../pages/Admin/Admin';
 
   export default function App(){
     const auth = getAuth();
@@ -55,8 +58,10 @@
         <Route path='/account' element={<UserAccount/>}>
           <Route path="userProfile" element={<UserInfo />} />
           <Route path="orderHistory" element={<OrdersHistory />} />
-          
+          <Route path="about" element={<About />} />
+          <Route path="edit" element={<AddMeal />} />          
         </Route>
+        <Route path='/admin' element={<Admin/>}></Route>
       </Routes>
       </> 
     )

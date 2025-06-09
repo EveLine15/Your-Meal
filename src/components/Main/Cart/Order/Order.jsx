@@ -2,7 +2,7 @@ import "./Order.scss"
 
 import { useChangeAmount } from "./helper/helper"
 
-export default function Order({id, name, img, weight, price, description, compos, calories, amount, cart, setCart}){
+export default function Order({id, name, img, weight, price, amount}){
     const updateOrderAmount = useChangeAmount();
     
     return (

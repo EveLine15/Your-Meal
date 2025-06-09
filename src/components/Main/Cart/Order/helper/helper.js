@@ -18,20 +18,20 @@ export const useChangeAmount = () => {
 
         if(currentAmount <= 1 && change === -1) {
             newCart = (cart.filter(item => item.id !== id));
-            return;
         }
 
-        newCart = cart.map(item => {
-            if(item.id === id){
-                const newAmount = +item.amount + change;
-                return{
-                    ...item,
-                    amount: newAmount
+        else{
+            newCart = cart.map(item => {
+                if(item.id === id){
+                    const newAmount = +item.amount + change;
+                    return{
+                        ...item,
+                        amount: newAmount
+                    }
                 }
-            }
 
-            return item;
-        })
+            })
+        }
 
         const updateCartInDb = async () => {
             try {

@@ -1,0 +1,30 @@
+.wr-about{
+    min-width: 1440px;
+    margin: 0 auto;
+    padding: 30px 50px;
+
+    h1{
+        font-size: 40px;
+        margin-bottom: 50px;
+        color: #FFA800;
+        font-weight: 900;
+        border-bottom: 3px #FFA800 solid;
+        width: 100%;
+    }
+
+    .general-info{
+        color: rgb(0, 0, 0);
+        font-size: clamp(20px, 2vw, 25px);
+        font-weight: 400;
+        line-height: 130%;
+    }
+
+    p{
+        margin-bottom: 20px;
+
+        span{
+            color: #FFA800;
+            font-weight: 900;
+        }
+    }
+}

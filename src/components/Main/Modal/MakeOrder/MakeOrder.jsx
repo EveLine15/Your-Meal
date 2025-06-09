@@ -1,10 +1,14 @@
 import "./MakeOrder.scss"
 import donut from "../../../../assets/images/donut.png"
 import { useState, useEffect } from "react"
-import { useAddOrderMutation, useLazyGetUserQuery } from "../../../../services/firebaseApi";
+import { useAddOrderMutation, useLazyGetUserQuery, useUpdateCartMutation } from "../../../../services/firebaseApi";
 import { getAuth } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { setCart } from "../../../../store/slices/cartSlice";
 
-export default function MakeOrder(){
+export default function MakeOrder({closeModal}){
+    const dispatch = useDispatch();
+    const [triggerCartMutation] = useUpdateCartMutation();
     const [delivery, setDelivery] = useState(false);
     const [selectedOption, setSelectedOption] = useState('option1');
     const [formData, setFormData] = useState({
@@ -19,11 +23,7 @@ export default function MakeOrder(){
     const auth = getAuth();
     const user = auth.currentUser;
 
-    // use in courseWork
-    // const handleChange = (e) => {
-    //     const { id, value } = e.target;
-    //     setFormData((prev) => ({ ...prev, [id]: value }));
-    // };
+    const { items: cart, price } = useSelector((state) => state.cart);
 
     const [addOrder] = useAddOrderMutation();
     const [triggerGetUser] = useLazyGetUserQuery();
@@ -35,7 +35,10 @@ export default function MakeOrder(){
                 if (data) setFormData({
                     name: data.name,
                     phone: "",
-                    address: Object.values(data.address).join(", ")
+                    city: data.address.city,
+                    street: data.address.street,
+                    house: data.address.house,
+                    apartment: data.address.apartment
                 });
             } catch (err) {
                 console.error("Failed to load user data", err);
@@ -52,7 +55,7 @@ export default function MakeOrder(){
         const { name, phone, city, street, house, apartment } = formData;
 
         if (!name || !phone || (delivery && (!city || !street || !house || !apartment))) {
-            console.log("error")
+            console.log("Fieldes aren't filled")
             return;
         }
 
@@ -66,8 +69,12 @@ export default function MakeOrder(){
                 house: house,
                 apartment: apartment
             }),
-            createdAt: new Date().toISOString(),
+            createdAt: new Date().toLocaleDateString('ru-RU'),
+            cart: cart,
+            price: price
         };
+
+        console.log(order)
 
         try {
             await addOrder({
@@ -76,6 +83,9 @@ export default function MakeOrder(){
             }).unwrap();
             setSelectedOption("option1");
             setDelivery(false);
+            dispatch(setCart([]));
+            await triggerCartMutation({ uid: user.uid, cart: [] }).unwrap();
+            closeModal();
         } catch (error) {
             console.error("Ошибка при отправке заказа:", error);
         }
@@ -131,7 +141,7 @@ export default function MakeOrder(){
                                     type="text" 
                                     placeholder="Улица" 
                                     id="address" 
-                                    value={formData.address} 
+                                    value={formData.street} 
                                     onChange={
                                     (e) => {setFormData((prev) => ({ ...prev, street: e.target.value }))} 
                                     }

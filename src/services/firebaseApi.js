@@ -1,4 +1,3 @@
-// services/firebaseApi.js
 import { getDatabase, ref, get, set, update, child, push } from "firebase/database";
 import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
 
@@ -66,7 +65,8 @@ export const firebaseApi = createApi({
     }),
 
     addOrder: builder.mutation({
-      queryFn: async ({ uid, order }) => {
+      queryFn: async ({ uid, orders }) => {
+        console.log("order in rb", orders);
         try {
           if (!uid) throw new Error("Missing user ID");
 
@@ -81,7 +81,7 @@ export const firebaseApi = createApi({
             : Object.values(existingOrders);
 
           const newOrder = {
-            ...order,
+            ...orders,
             id: Date.now().toString(),
           };
 
@@ -90,6 +90,22 @@ export const firebaseApi = createApi({
           await set(ordersRef, ordersArray);
 
           return { data: newOrder };
+        } catch (err) {
+          return { error: { status: 500, message: err.message } };
+        }
+      },
+    }),
+
+    getOrder: builder.query({
+      queryFn: async (uid) => {
+        try {
+          const dbRef = ref(getDatabase());
+          const snapshot = await get(child(dbRef, `users/${uid}/orders`));
+          if (snapshot.exists()) {
+            return { data: snapshot.val() };
+          } else {
+            return { data: [] }
+          }
         } catch (err) {
           return { error: { status: 500, message: err.message } };
         }
@@ -123,6 +139,48 @@ export const firebaseApi = createApi({
             }
         },
     }),
+
+    getMenuLength: builder.query({
+      queryFn: async (category) => {
+        try {
+          const dbRef = ref(getDatabase());
+          const snapshot = await get(child(dbRef, `menu/${category}/items`));
+          if (snapshot.exists()) {
+            const menuData = snapshot.val();
+            const menuArray = Object.values(menuData);
+            return { data: menuArray.length };
+          } else {
+            console.warn("No menu data found");
+            return { error: { status: 404, message: "Menu not found" } };
+          }
+        } catch (err) {
+          console.error("Error loading menu:", err);
+          return { error: { status: 500, message: err.message } };
+        }
+      }
+    }),
+
+    addProduct: builder.mutation({
+      queryFn: async ({ category, data, number }) => {
+        try {
+          const db = getDatabase();
+
+          const itemRef = ref(db, `menu/${category}/items/${number}`);
+
+          const cleanData = {
+            ...data,
+            compos: data.compos.split(',').map(item => item.trim())
+          };
+
+          await set(itemRef, cleanData);
+
+          return { data: cleanData };
+        } catch (err) {
+          return { error: { status: 500, message: err.message } };
+        }
+      },
+    })
+
   }),
 
 });
@@ -135,6 +193,9 @@ export const {
   useUpdateUserMutation,
   useLazyGetMenuQuery,
   useAddOrderMutation,
+  useLazyGetOrderQuery,
   useLazyGetCartQuery,
-  useUpdateCartMutation
+  useUpdateCartMutation,
+  useAddProductMutation,
+  useGetMenuLengthQuery
 } = firebaseApi;

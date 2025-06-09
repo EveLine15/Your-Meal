@@ -3,13 +3,15 @@ import { Link, useNavigate } from "react-router"
 import { useLazyGetUserQuery } from "../../services/firebaseApi";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-
+import { useDispatch } from "react-redux";
+import { setIsAdmin } from "../../store/slices/adminSlice";
 import donut from "../../assets/images/donut.png"
 
 export default function Login(){
     const navigate = useNavigate();
     const auth = getAuth();
     const [triggerGetUser] = useLazyGetUserQuery();
+    const dispatch = useDispatch();
 
     const [loginData, setLoginData] = useState({
         email: "",
@@ -31,32 +33,40 @@ export default function Login(){
         const newErrors = {};
         if (!loginData.email) newErrors.errorEmail = true;
         if (!loginData.password) newErrors.errorPassword = true;
-        
-        setError(newErrors);
 
-        if (Object.keys(newErrors).length === 0) {
-            try {
-                const userCredential = await signInWithEmailAndPassword(
-                  auth,
-                  loginData.email,
-                  loginData.password
-                );
-                const user = userCredential.user;
- 
-                const result = await triggerGetUser(user.uid).unwrap();
-                if (result) {
-                  navigate("/home");
-                } else {
-                  setError("Пользователь не найден в базе данных");
-                }
-                
-              } catch (err) {
-                console.error("Ошибка входа:", err);
-                setError("Неверный email или пароль");
-              }
+        setError(newErrors);
+        if (Object.keys(newErrors).length > 0) return;
+
+        try {
+            const userCredential = await signInWithEmailAndPassword(
+            auth,
+            loginData.email,
+            loginData.password
+            );
+            const user = userCredential.user;
+
+            const result = await triggerGetUser(user.uid).unwrap();
+
+            await user.getIdToken(true); // ensure fresh token
+            const tokenResult = await user.getIdTokenResult();
+            const isAdmin = tokenResult.claims.admin === true;
+            dispatch(setIsAdmin(isAdmin));
+
+            if (result) {
+            if (isAdmin) {
+                navigate("/admin");
+            } else {
+                navigate("/home");
+            }
+            } else {
+            setError({ ...error, errorUnauth: true });
+            }
+        } catch (err) {
+            console.error("Ошибка входа:", err);
+            setError({ ...error, errorUnauth: true });
         }
-    
-      };
+    };
+
 
     return(
         <div className="wr-reg">

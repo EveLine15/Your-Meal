@@ -30,45 +30,47 @@ export default function Register(){
     const handleRegister = async (e) => {
         e.preventDefault();
         setSubmitted(true);
-    
+
         const newErrors = {};
         if (!formData.name) newErrors.errorName = true;
         if (!formData.email) newErrors.errorEmail = true;
         if (!formData.password) newErrors.errorPassword = true;
         if (formData.password !== formData.confirmPassword) newErrors.errorConfirmPassword = true;
-    
-        setError(newErrors);
-    
-        if (Object.keys(newErrors).length === 0) {
-            createUserWithEmailAndPassword(auth, formData.email, formData.password)
-            .then(user => {
-                const newUserData = {
-                    email: user.email,
-                    login: formData.name,
-                    avatar: "",
-                    address: "",
-                    cardNumber: "",
-                    createdAt: new Date().toISOString(),
-                    cart: []
-                };
 
-                addUser({ 
-                    uid: user.uid,
-                    newUser: newUserData
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
-            })
-    
-            .catch((error) => {
-                console.error("Failed to add user to service:", error);
-                auth.currentUser.delete();
-            })
-    
+        setError(newErrors);
+
+        if (Object.keys(newErrors).length > 0) return;
+
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+
+            const newUserData = {
+                email: userCredential.user.email,
+                login: formData.name,
+                avatar: "",
+                address: "",
+                cardNumber: "",
+                createdAt: new Date().toISOString(),
+                cart: []
+            };
+
+            await addUser({
+                uid: userCredential.user.uid,
+                userData: newUserData
+            });
+
             navigate("/home");
+        } catch (error) {
+            console.error("Registration error:", error);
+            if (auth.currentUser) {
+                try {
+                    await auth.currentUser.delete();
+                } catch (err) {
+                    console.error("Failed to delete user after error:", err);
+                }
+            }
         }
-      };
+    };
 
     return(
         <div className="wr-reg">
